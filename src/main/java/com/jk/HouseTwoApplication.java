@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @MapperScan("com.jk.dao")
-@EnableTransactionManagement
 public class HouseTwoApplication {
 
     public static void main(String[] args) {

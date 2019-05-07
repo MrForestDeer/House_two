@@ -19,7 +19,7 @@ import java.util.HashMap;
  * @ Version 1.0
  */
 @Controller
-@RequestMapping("tenant")
+@RequestMapping("collect")
 public class CollectController {
        @Autowired
         private CollectService collectService;
