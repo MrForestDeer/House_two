@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.dao.user.UserMapper">
+
+    <!-- 登录判断该账号号是否存在数据库中 -->
+    <select id="findaccount" resultType="UserBean" parameterType="string">
+		SELECT * from p_user where name=#{value}
+	</select>
+
+    <!-- 登录判断该手机号是否存在数据库中 -->
+    <select id="findPhone" resultType="UserBean" parameterType="string">
+		SELECT * from p_user where phone=#{value}
+	</select>
+
+    <!-- 登录判断该账号是否存在数据库中 -->
+    <select id="findemail" resultType="UserBean" parameterType="string">
+		SELECT * from p_user where emali=#{value}
+	</select>
+
+
+</mapper>
