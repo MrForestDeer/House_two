@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.dao.HouseMapper">
+
+  <select id="findPorweTree" resultType="com.jk.util.MenuTree">
+      select  tree.infoid as id ,tree.infourl as url , tree.infoname as text, tree.ssionsid as pid  from p_midde pm ,p_premissions pp,p_quaninfo tree where  pm.roleid=pp.roid
+      and pp.quanid=tree.infoid and pm.userid=#{userid}
+  </select>
+    
+</mapper>
