@@ -1,6 +1,9 @@
 package com.jk.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class Room {
@@ -8,8 +11,10 @@ public class Room {
     private String romame;//房东姓名
     private String romddress;//房东地址
     private String romnumber;//房东手机号
-    private String stemindatetime;//合同开始时间
-    private String endmaxdatetime;//合同结束时间
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private Date stemindatetime;//合同开始时间
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private Date endmaxdatetime;//合同结束时间
     private Integer      romstate;//合同状态 1=正常，出现查看房东详情弹框 2=完善信息  修改添加未写的信息 3=到期查看房东详情弹框
     private String romphone;//联系电话
     private String romurgent;//紧急联系人
