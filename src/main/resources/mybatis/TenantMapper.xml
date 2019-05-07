@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.dao.TenantMapper">
+
+    <select id="queryCount" resultType="int">
+        select  count(1) from p_tenant
+    </select>
+    <select id="queryTenant" resultType="com.jk.bean.Tenant">
+        select * from  p_tenant t GROUP BY t.teid having
+        <if test="tename != null">
+            and t.tename = #{tename}
+        </if>
+        <if test="teaddress != null">
+            and t.teaddress = #{teaddress}
+        </if>
+        <if test="tenstate != null and  tenstate !=0">
+            and t.tenstate = #{tenstate}
+        </if>
+        LIMIT #{start},#{rows}
+
+    </select>
+    <select id="queryRoomCount" resultType="int">
+        select  count(1) from p_room
+    </select>
+    <select id="queryRoom" resultType="com.jk.bean.Room">
+        select * from  p_room r GROUP BY r.romid having
+        <if test="romame != null">
+            and r.romame = #{romame}
+        </if>
+        <if test="romddress != null">
+            and r.romddress = #{romddress}
+        </if>
+        <if test="romstate != null and  romstate != 0">
+            and r.romstate = #{romstate}
+        </if>
+        LIMIT #{start},#{rows}
+    </select>
+    <update id="updateRoom">
+        update p_room
+        <set >
+            <if test="romame != null" >
+                romame = #{romame,jdbcType=VARCHAR},
+            </if>
+            <if test="romddress != null" >
+                romddress = #{romddress,jdbcType=VARCHAR},
+            </if>
+            <if test="romnumber != null" >
+                romnumber = #{romnumber,jdbcType=VARCHAR},
+            </if>
+            <if test="stemindatetime != null" >
+                stemindatetime = #{stemindatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endmaxdatetime != null" >
+                endmaxdatetime = #{endmaxdatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="romstate != null" >
+                romstate = #{romstate,jdbcType=INTEGER},
+            </if>
+            <if test="romphone != null" >
+                romphone = #{romphone,jdbcType=VARCHAR},
+            </if>
+            <if test="romurgent != null" >
+                romurgent = #{romurgent,jdbcType=VARCHAR},
+            </if>
+            <if test="romidentitynumber != null" >
+                romidentitynumber = #{romidentitynumber,jdbcType=INTEGER},
+            </if>
+            <if test="rommany != null" >
+                rommany = #{rommany,jdbcType=INTEGER},
+            </if>
+            <if test="romdeposit != null" >
+                romdeposit = #{romdeposit,jdbcType=INTEGER},
+            </if>
+            <if test="rompaymentmethod != null" >
+                romPaymentmethod = #{rompaymentmethod,jdbcType=VARCHAR},
+            </if>
+            <if test="romkong != null" >
+                romkong = #{romkong,jdbcType=INTEGER},
+            </if>
+            <if test="romintkong != null" >
+                romintkong = #{romintkong,jdbcType=INTEGER},
+            </if>
+            <if test="romwater != null" >
+                romwater = #{romwater,jdbcType=INTEGER},
+            </if>
+            <if test="romelectric != null" >
+                romelectric = #{romelectric,jdbcType=INTEGER},
+            </if>
+            <if test="romgasl != null" >
+                romgasl = #{romgasl,jdbcType=INTEGER},
+            </if>
+            <if test="romweizhi != null" >
+                romweizhi = #{romweizhi,jdbcType=VARCHAR},
+            </if>
+            <if test="tenzhangdai != null" >
+                tenzhangdai = #{tenzhangdai,jdbcType=INTEGER},
+            </if>
+            <if test="tenshouk != null" >
+                tenshouk = #{tenshouk,jdbcType=INTEGER},
+            </if>
+            <if test="rommianji != null" >
+                rommianji = #{rommianji,jdbcType=INTEGER},
+            </if>
+            <if test="romhuxing != null" >
+                romhuxing = #{romhuxing,jdbcType=INTEGER},
+            </if>
+            <if test="romflg != null" >
+                romflg = #{romflg,jdbcType=INTEGER},
+            </if>
+            <if test="romnfn != null" >
+                romnfn = #{romnfn,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where romid = #{romid,jdbcType=INTEGER}
+    </update>
+    <insert id="addRoom" >
+       insert into p_room (romid, romame, romddress,
+      romnumber, stemindatetime, endmaxdatetime,
+      romstate, romphone, romurgent,
+      romidentitynumber, rommany, romdeposit,
+      romPaymentmethod, romkong, romintkong,
+      romwater, romelectric, romgasl,
+      romweizhi, tenzhangdai, tenshouk,
+      rommianji, romhuxing, romflg,
+      romnfn)
+    values (#{romid,jdbcType=INTEGER}, #{romame,jdbcType=VARCHAR}, #{romddress,jdbcType=VARCHAR},
+      #{romnumber,jdbcType=VARCHAR}, #{stemindatetime,jdbcType=TIMESTAMP}, #{endmaxdatetime,jdbcType=TIMESTAMP},
+      #{romstate,jdbcType=INTEGER}, #{romphone,jdbcType=VARCHAR}, #{romurgent,jdbcType=VARCHAR},
+      #{romidentitynumber,jdbcType=INTEGER}, #{rommany,jdbcType=INTEGER}, #{romdeposit,jdbcType=INTEGER},
+      #{rompaymentmethod,jdbcType=VARCHAR}, #{romkong,jdbcType=INTEGER}, #{romintkong,jdbcType=INTEGER},
+      #{romwater,jdbcType=INTEGER}, #{romelectric,jdbcType=INTEGER}, #{romgasl,jdbcType=INTEGER},
+      #{romweizhi,jdbcType=VARCHAR}, #{tenzhangdai,jdbcType=INTEGER}, #{tenshouk,jdbcType=INTEGER},
+      #{rommianji,jdbcType=INTEGER}, #{romhuxing,jdbcType=INTEGER}, #{romflg,jdbcType=INTEGER},
+      #{romnfn,jdbcType=VARCHAR})
+
+    </insert>
+
+
+</mapper>
