@@ -1,0 +1,51 @@
+spring:
+  datasource:
+    name: mydb
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3306/worok
+    username: root
+    password: 123
+    driver-class-name: com.mysql.jdbc.Driver
+  application:
+    name: servername   #微服务的名字
+
+  dubbo:
+    application:
+      name: tree_consumer_client    #dubbo消费者，客户端名字
+    registry:
+      address: zookeeper://127.0.0.1:2181  #注册中心地址(zookeeper) 如掉别人的写他人的IP
+    scan: com.jk.service    #暴露的方法（让别人可以调用）
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    pass:
+    maxIdle: 300
+    maxActive: 600
+    maxWait: 1000
+    testOnBorrow: true
+
+  data:
+    mongodb:
+      uri: mongodb://127.0.0.1:27017/1809b
+  #邮件发送配置
+  mail:
+    default-encoding: UTF-8
+    host: smtp.qq.com
+    username: 493213427@qq.com
+    password: szgnnrqzcxjlbgjg
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+mybatis:
+  mapperLocations: classpath*:mybatis/*.xml
+  typeAliasesPackage: com.jk.bean
+
+
+server:
+  port: 8081
