@@ -49,18 +49,15 @@ public class TenantController {
         return tenantService.queryRoomById(room,id);
     }
     //完善合同
-    //新增
+    //新增房东
     @ResponseBody
     @RequestMapping("addRoom")
     public String addRoom(Room room){
         tenantService.addRoom(room);
         return null;
     }
-    @RequestMapping("addRoom")
-    public String addRoom() {
-        return "add";
-    }
-    //修改
+
+    //修改房东
     @RequestMapping("updateRoom")
     @ResponseBody
     public void updateRoom(Room room){
@@ -68,10 +65,35 @@ public class TenantController {
         tenantService.updateRoom(room);
 
     }
+    //回显
     @RequestMapping("findroombyid")
     public String  findroombyid(Integer id, Model model){
         Room room= tenantService.findroombyid(id);
         model.addAttribute("c",room);
+        return  "add";
+    }
+    //完善合同
+    //新增租客
+    @ResponseBody
+    @RequestMapping("addTenant")
+    public String addTenant(Tenant tenant){
+        tenantService.addTenant(tenant);
+        return null;
+    }
+
+    //修改租客
+    @RequestMapping("updateTenant")
+    @ResponseBody
+    public void updateTenant(Tenant tenant){
+
+        tenantService.updateTenant(tenant);
+
+    }
+    //回显
+    @RequestMapping("findTenantbyid")
+    public String  findTenantbyid(Integer id, Model model){
+        Tenant tenant= tenantService.findTenantbyid(id);
+        model.addAttribute("c",tenant);
         return  "add";
     }
 

@@ -135,6 +135,83 @@
       #{romnfn,jdbcType=VARCHAR})
 
     </insert>
+    <insert id="addTenant" >
+       insert into p_tenant (teid, tename, teaddress,
+      tenumber, stemindatetime, endmaxdatetime,
+      tenstate, tenphone, tenurgent,
+      tenidentitynumber, tenmany, tendeposit,
+      tenPaymentmethod, tenwater, tenelectric,
+      tengasl, tenzhangdai, tenshouk,
+      teninfn)
+    values (#{teid,jdbcType=INTEGER}, #{tename,jdbcType=VARCHAR}, #{teaddress,jdbcType=VARCHAR},
+      #{tenumber,jdbcType=INTEGER}, #{stemindatetime,jdbcType=TIMESTAMP}, #{endmaxdatetime,jdbcType=TIMESTAMP},
+      #{tenstate,jdbcType=INTEGER}, #{tenphone,jdbcType=VARCHAR}, #{tenurgent,jdbcType=VARCHAR},
+      #{tenidentitynumber,jdbcType=INTEGER}, #{tenmany,jdbcType=INTEGER}, #{tendeposit,jdbcType=INTEGER},
+      #{tenpaymentmethod,jdbcType=INTEGER}, #{tenwater,jdbcType=INTEGER}, #{tenelectric,jdbcType=INTEGER},
+      #{tengasl,jdbcType=INTEGER}, #{tenzhangdai,jdbcType=INTEGER}, #{tenshouk,jdbcType=INTEGER},
+      #{teninfn,jdbcType=VARCHAR})
+
+    </insert>
+    <update id="updateTenant">
+        update p_tenant
+        <set >
+            <if test="tename != null" >
+                tename = #{tename,jdbcType=VARCHAR},
+            </if>
+            <if test="teaddress != null" >
+                teaddress = #{teaddress,jdbcType=VARCHAR},
+            </if>
+            <if test="tenumber != null" >
+                tenumber = #{tenumber,jdbcType=INTEGER},
+            </if>
+            <if test="stemindatetime != null" >
+                stemindatetime = #{stemindatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endmaxdatetime != null" >
+                endmaxdatetime = #{endmaxdatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tenstate != null" >
+                tenstate = #{tenstate,jdbcType=INTEGER},
+            </if>
+            <if test="tenphone != null" >
+                tenphone = #{tenphone,jdbcType=VARCHAR},
+            </if>
+            <if test="tenurgent != null" >
+                tenurgent = #{tenurgent,jdbcType=VARCHAR},
+            </if>
+            <if test="tenidentitynumber != null" >
+                tenidentitynumber = #{tenidentitynumber,jdbcType=INTEGER},
+            </if>
+            <if test="tenmany != null" >
+                tenmany = #{tenmany,jdbcType=INTEGER},
+            </if>
+            <if test="tendeposit != null" >
+                tendeposit = #{tendeposit,jdbcType=INTEGER},
+            </if>
+            <if test="tenpaymentmethod != null" >
+                tenPaymentmethod = #{tenpaymentmethod,jdbcType=INTEGER},
+            </if>
+            <if test="tenwater != null" >
+                tenwater = #{tenwater,jdbcType=INTEGER},
+            </if>
+            <if test="tenelectric != null" >
+                tenelectric = #{tenelectric,jdbcType=INTEGER},
+            </if>
+            <if test="tengasl != null" >
+                tengasl = #{tengasl,jdbcType=INTEGER},
+            </if>
+            <if test="tenzhangdai != null" >
+                tenzhangdai = #{tenzhangdai,jdbcType=INTEGER},
+            </if>
+            <if test="tenshouk != null" >
+                tenshouk = #{tenshouk,jdbcType=INTEGER},
+            </if>
+            <if test="teninfn != null" >
+                teninfn = #{teninfn,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where teid = #{teid,jdbcType=INTEGER}
+    </update>
 
 
 </mapper>

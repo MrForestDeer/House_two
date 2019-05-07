@@ -20,4 +20,10 @@ public interface TenantService {
     Room findroombyid(Integer id);
 
     void addRoom(Room room);
+
+    void addTenant(Tenant tenant);
+
+    void updateTenant(Tenant tenant);
+
+    Tenant findTenantbyid(Integer id);
 }

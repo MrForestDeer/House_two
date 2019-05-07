@@ -42,25 +42,34 @@ public class TenantServiceImpl implements TenantService{
     public String queryTenantById(Tenant tenant, Integer id) {
         return tenantMapper.queryTenantById(tenant, id);
     }
-
     @Override
     public String queryRoomById(Room room, Integer id) {
         return tenantMapper.queryRoomById(room,id);
     }
-
     @Override
     public void updateRoom(Room room) {
         tenantMapper.updateRoom(room);
     }
-
     @Override
     public Room findroombyid(Integer id) {
         return tenantMapper.findroombyid(id);
     }
-
     @Override
     public void addRoom(Room room) {
         tenantMapper.addRoom(room);
+    }
+    @Override
+    public void addTenant(Tenant tenant) {
+        tenantMapper.addTenant(tenant);
+    }
+    @Override
+    public void updateTenant(Tenant tenant) {
+        tenantMapper.updateTenant(tenant);
+
+    }
+    @Override
+    public Tenant findTenantbyid(Integer id) {
+        return tenantMapper.findTenantbyid(id);
     }
 
 
