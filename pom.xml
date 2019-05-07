@@ -29,17 +29,47 @@
     <dependencies>
 
 
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.7</version>
-        </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>3.1.13</version>
+spring:
+  datasource:
+    name: mydb
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/1810b?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123
+    driver-class-name: com.mysql.jdbc.Driver
+    application:
+      name: serviceconsumer
+    #  dubbo:
+    #    application:
+    #      name: login_consumer
+    #    registry:
+    #      address: zookeeper://127.0.0.1:2181
+    #    scan: com.jk.service
+    #redis
+#  redis:
+#    host: 192.168.1.141
+#    port: 6379
+#    timeout: 3000
+#    password: 123
+mybatis:
+  mapperLocations: classpath*:mybatis/*Mapper.xml
+  typeAliasesPackage: com.jk.bean
+#  data:
+#    mongodb:
+#      uri: mongodb://192.168.1.141:27017/1810B
+#  aop:
+#    proxy-target-class: false
+#server:
+#  port: 8080
+
         </dependency>
+
+
 
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -47,17 +77,8 @@
             <version>1.0.5</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
 
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-            <version>1.5.0.RELEASE</version>
-        </dependency>
+ 
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

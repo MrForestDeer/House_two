@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.dao.CollectMapper">
+<!--tenant SQL 语句开始-->
+    <select id="queryTenant" resultType="com.jk.bean.Tenant">
+        select * from  p_tenant g where 1=1
+
+        <if test="tenumber != null" >
+            and  g.tenumber = #{tenumber}
+        </if>
+        <if test="tename != null and tename != ''" >
+            and  g.tename like   concat(concat('%',#{tename}),'%')
+        </if>
+
+        LIMIT #{start},#{rows}
+    </select>
+    <select id="findTenantCount" resultType="int">
+        select  count(1) from p_tenant
+    </select>
+    <!--tenant SQL 语句结束-->
+    <!--Room SQL 语句开始-->
+    <select id="findRoomCount" resultType="int">
+        select  count(1) from p_room
+    </select>
+
+
+    <select id="queryRoom" resultType="com.jk.bean.Room">
+        select * from  p_room g where 1=1
+
+        <if test="romnumber != null" >
+            and  g.romnumber = #{romnumber}
+        </if>
+        <if test="romame != null and romame != ''" >
+            and  g.romame like   concat(concat('%',#{romame}),'%')
+        </if>
+
+        LIMIT #{start},#{rows}
+    </select>
+
+    <!--Room SQL 语句结束-->
+    <!--Shouzhi SQL 语句开始-->
+    <select id="findShouzhiCount" resultType="int">
+        select  count(1) from t_shouzhi
+    </select>
+
+    <select id="queryShouzhi" resultType="com.jk.bean.Shouzhi">
+        select * from
+         t_shouzhi s,
+         p_tenant p,
+         p_room r
+         where  s.ros = r.tenshouk and  s.tomz = p.tenshouk
+        tenzhangdai
+        <if test="tenzhangdai != null" >
+            and  p.tenzhangdai = #{tenzhangdai}
+        </if>
+        <if test="tenzhangdai != null" >
+        and  r.tenzhangdai = #{tenzhangdai}
+        </if>
+        <if test="stemindatetime != null" >
+            and  p.stemindatetime  &lt;  #{stemindatetime}
+        </if>
+
+        <if test="endmaxdatetime != null" >
+            and  p.endmaxdatetime  &gt;  #{endmaxdatetime}
+        </if>
+        LIMIT #{start},#{rows}
+    </select>
+
+    <!--Room SQL 语句结束-->
+
+
+</mapper>
