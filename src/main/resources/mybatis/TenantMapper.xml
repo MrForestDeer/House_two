@@ -7,12 +7,12 @@
         select  count(1) from p_tenant
     </select>
     <select id="queryTenant" resultType="com.jk.bean.Tenant">
-        select * from  p_tenant t GROUP BY t.teid having
+        select * from  p_tenant t GROUP BY t.teid having 1=1
         <if test="tename != null">
-            and t.tename = #{tename}
+            and t.tename like   concat(concat('%',#{tename}),'%')
         </if>
         <if test="teaddress != null">
-            and t.teaddress = #{teaddress}
+            and t.teaddress like   concat(concat('%',#{teaddress}),'%')
         </if>
         <if test="tenstate != null and  tenstate !=0">
             and t.tenstate = #{tenstate}
@@ -24,12 +24,13 @@
         select  count(1) from p_room
     </select>
     <select id="queryRoom" resultType="com.jk.bean.Room">
-        select * from  p_room r GROUP BY r.romid having
+        select * from  p_room r GROUP BY r.romid having 1=1
         <if test="romame != null">
-            and r.romame = #{romame}
+            and r.romame  like   concat(concat('%',#{romame}),'%')
+
         </if>
         <if test="romddress != null">
-            and r.romddress = #{romddress}
+            and r.romddress like   concat(concat('%',#{romddress}),'%')
         </if>
         <if test="romstate != null and  romstate != 0">
             and r.romstate = #{romstate}
