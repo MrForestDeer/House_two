@@ -26,4 +26,10 @@ public interface TenantMapper {
     Room findroombyid(@Param("id") Integer id);
 
     void addRoom(Room room);
+
+    void addTenant(Tenant tenant);
+
+    void updateTenant(Tenant tenant);
+    @Select("select * from p_tenant where teid =#{id}")
+    Tenant findTenantbyid(@Param("id") Integer id);
 }
