@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class User {
+    private String id;
     private String name;//账户:
     private String paword;//密码:
     private String Code;//验证码
