@@ -16,7 +16,7 @@ public interface HouseMapper {
     List<User> findUser(@Param("start") Integer start,@Param("pageSize") Integer pageSize);
     @Delete("delete from p_user  where id= #{userId}")
     void deleteUser(@Param("userId") String userId);
-    @Select("select *from p_role limit #{start},#{pageSize}")
+
 
     List<Role> findRoles(@Param("start") Integer start,@Param("pageSize") Integer pageSize);
 
