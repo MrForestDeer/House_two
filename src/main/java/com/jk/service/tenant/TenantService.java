@@ -1,4 +1,4 @@
-package com.jk.service;
+package com.jk.service.tenant;
 
 import com.jk.bean.Room;
 import com.jk.bean.Tenant;

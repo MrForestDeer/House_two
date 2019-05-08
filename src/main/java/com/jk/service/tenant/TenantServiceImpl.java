@@ -1,8 +1,8 @@
-package com.jk.service;
+package com.jk.service.tenant;
 
 import com.jk.bean.Room;
 import com.jk.bean.Tenant;
-import com.jk.dao.TenantMapper;
+import com.jk.dao.tenant.TenantMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Service
-public class TenantServiceImpl implements TenantService{
+public class TenantServiceImpl implements TenantService {
 
     @Resource
     private TenantMapper tenantMapper;

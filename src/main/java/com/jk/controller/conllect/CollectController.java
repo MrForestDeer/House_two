@@ -1,9 +1,9 @@
-package com.jk.controller;
+package com.jk.controller.conllect;
 
 import com.jk.bean.Room;
 import com.jk.bean.Shouzhi;
 import com.jk.bean.Tenant;
-import com.jk.service.CollectService;
+import com.jk.service.collect.CollectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

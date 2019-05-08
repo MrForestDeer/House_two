@@ -1,4 +1,4 @@
-package com.jk.dao;
+package com.jk.dao.tenant;
 
 import com.jk.bean.Room;
 import com.jk.bean.Tenant;

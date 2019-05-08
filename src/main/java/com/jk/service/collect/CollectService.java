@@ -1,4 +1,4 @@
-package com.jk.service;
+package com.jk.service.collect;
 
 import com.jk.bean.Room;
 import com.jk.bean.Shouzhi;

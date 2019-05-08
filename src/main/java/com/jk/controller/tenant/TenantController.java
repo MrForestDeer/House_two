@@ -1,8 +1,8 @@
-package com.jk.controller;
+package com.jk.controller.tenant;
 
 import com.jk.bean.Room;
 import com.jk.bean.Tenant;
-import com.jk.service.TenantService;
+import com.jk.service.tenant.TenantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
