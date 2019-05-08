@@ -9,12 +9,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.jk</groupId>
-    <artifactId>demoboot-test</artifactId>
+    <artifactId>House_twoS</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demoboot-test</name>
+    <name>House_twoS</name>
 
     <description>Demo project for Spring Boot</description>
-
 
     <properties>
         <java.version>1.8</java.version>

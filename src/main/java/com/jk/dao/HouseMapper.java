@@ -14,17 +14,22 @@ import java.util.List;
 public interface HouseMapper {
     List<MenuTree> findPorweTree(@Param("userid") String id);
     List<User> findUser(@Param("start") Integer start,@Param("pageSize") Integer pageSize);
-@Delete("delete from p_user  where id= #{userId}")
+    @Delete("delete from p_user  where id= #{userId}")
     void deleteUser(@Param("userId") String userId);
-@Select("select *from p_role limit #{start},#{pageSize}")
-    List<Role> findRole(@Param("start") Integer start,@Param("pageSize") Integer pageSize);
+    @Select("select *from p_role limit #{start},#{pageSize}")
+
+    List<Role> findRoles(@Param("start") Integer start,@Param("pageSize") Integer pageSize);
 
     List<Integer> dindByRoleId(@Param("rid") String rid);
 
- @Select(" select *from   p_quaninfo")
+    @Select(" select *from   p_quaninfo")
     List<LinkedHashMap<String, Object>> findMenu();
-@Delete("delete form p_premissions where roid=#{roid}")
+    @Delete("delete form p_premissions where roid=#{roid}")
     void deleteRolePower(@Param("rid") Integer rid);
 
     void addRolePower(@Param("rpid")String rpid, @Param("rid")Integer rid,@Param("powerIds") String[] powerIds);
+
+    Long findUserCount();
+@Select("select count(*)  from p_role")
+    Long findRolesCount();
 }

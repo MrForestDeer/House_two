@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
 public class MangerCoutroller {
 
 @Autowired
-    MangerServicce mangerServicce;
+MangerServicce mangerServicce;
 
 
 //点击树 进方法 返回对应页面
@@ -28,7 +29,7 @@ public class MangerCoutroller {
 
     @RequestMapping("findUser")
     @ResponseBody
-    public List<User> findUser(Integer start,Integer pageSize){
+    public HashMap<String,Object> findUser(Integer start, Integer pageSize){
       return   mangerServicce.findUser(start,pageSize);
 
     }
@@ -39,11 +40,11 @@ public class MangerCoutroller {
         mangerServicce.deleteUser( userId);
 
     }
-    //查询角色
+//查询角色
     @RequestMapping("findRole")
     @ResponseBody
-    public List<Role> findRole(Integer start,  Integer pageSize){
-return  mangerServicce.findRole(start,pageSize);
+    public HashMap<String,Object> findRoles(Integer start, Integer pageSize){
+return  mangerServicce.findRoles(start,pageSize);
 
     }
     //查询ztree

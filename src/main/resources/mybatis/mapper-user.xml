@@ -15,9 +15,15 @@
         select * from p_user pu,p_role pr  where pu.positionId=pr.rid  limit #{start},#{pageSize}
 
     </select>
-<select id="findRole" resultType="com.jk.bean.Role">
+<select id="findUserCount" resultType="java.lang.Long">
+       select count(*) from p_user pu,p_role pr  where pu.positionId=pr.rid
 
-    select * from p_role
+
+</select>
+
+<select id="findRoles" resultType="com.jk.bean.Role">
+
+    select * from p_role limit #{start},#{pageSize}
 
 </select>
 
