@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 引入bootstrap的css -->
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+<!-- 引入bootstrap-treeview的css -->
+<link href="/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+<!-- 引入bootstrap-addTabs的css -->
+<link href="/addTabs/addTabs.css" rel="stylesheet" >
+<!-- 引入bootstrap-table的css -->
+<link href="/table/bootstrap-table.min.css" rel="stylesheet" >
+<!-- 引入fileinput的css -->
+<link type="text/css" rel="stylesheet" href="/fileinput/css/fileinput.min.css" />
+
+
+
+
+<!-- 引入jquery -->
+<script type="text/javascript" src="/jquery.min.js"></script>
+<!-- 引入my97 -->
+<script type="text/javascript" src="/my97/WdatePicker.js"></script>
+<!-- 引入bootstrap的js-->
+<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+<!-- 引入bootstrap的js-->
+<script type="text/javascript" src="/js/treeview/bootstrap-treeview.min.js"></script>
+<!-- 引入bootstrap的js-->
+<script type="text/javascript" src="/addTabs/addTabs.js"></script>
+<!-- 引入bootstrap-table的js-->
+<script type="text/javascript" src="/table/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="/table/locale/bootstrap-table-zh-CN.min.js"></script>
+<!-- 引入bootbox.js -->
+<script type="text/javascript" src="/bootbox/bootbox.js"></script>
+<!-- 引入fileinput的js -->
+<script type="text/javascript" src="/fileinput/js/fileinput.min.js"></script>
+<!--  引入fileinput的js -->
+<script type="text/javascript" src="/fileinput/js/locales/zh.js"></script>
+
+<script type="text/javascript" src="/fileinput/themes/fa/theme.js"></script>
+<style type="text/css">
+    body {padding-top:55px;}
+</style>
+</head>
+<body>
+<!--导航条  -->
+<nav class="navbar navbar-inverse navbar-fixed-top"> <!--定义在容器顶部  -->
+    <div class="container-fluid">
+        <button type="button" class="navbar-toggle collapsed"
+                data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
+            <span class="icon-bar"></span> <span class="icon-bar"></span>
+        </button>
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <!-- 头部信息 -->
+        <div class="navbar-header">
+            <a class="navbar-brand glyphicon glyphicon-globe"
+               href="javascript:dialogRedis()" id="menu-toggle">旅途中的家 </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse"
+             id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active "><a href="#"
+                                       class="glyphicon glyphicon-shopping-cart">&nbsp首页 <span
+                        class="sr-only">(current)</span></a></li>
+                <li><a href="#" class="glyphicon glyphicon-sunglasses">&nbsp系统设置</a></li>
+                <li><a href="#" class="glyphicon glyphicon-sunglasses">&nbsp投票系统</a></li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            <!-- 右边的    导航 按钮 -->
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">用户名称</a></li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle"
+                                        data-toggle="dropdown" role="button" aria-haspopup="true"
+                                        aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">完善个人信心</a></li>
+                        <li><a href="#">发布房屋</a></li>
+                        <li><a href="#">我要租赁</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">账户余额</a></li>
+                    </ul></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid --> </nav>
+<!-- ============================导航结束==================================-->
+<!--=========栅格布局 ==============-->
+<div class="row" >
+    <div class="col-md-2" style="height:500px;">
+
+        <a class="list-group-item" data-addtab="userMenu" data-target="#tabs"
+           data-url="">菜单栏</a>
+        <!-- tree 的插件 -->
+        <div id="treeDiv"></div>
+    </div>
+
+    <div class="col-md-10" >
+        <!--   选项卡    -->
+        <!-- Nav tabs -->
+        <ul id="tabs" class="nav nav-tabs" role="tablist" >
+            <li role="presentation" class="active"><a href="#home"
+                                                      aria-controls="home" role="tab" data-toggle="tab">欢迎</a></li>
+        </ul>
+        <!-- 选项卡  内容 -->
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" style="" class="tab-pane active " id="home"></div>
+        </div >
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    $(function (){
+        $.addtabs({iframeHeight:800});
+        findtree();
+    })
+    function findtree(){
+        $.ajax({
+            url:"../tree/findPorweTree",
+            type:"post",
+            data:{},
+            datatype:"json",
+            async:true,
+            success:function(tree){
+
+                $("#treeDiv").treeview({
+                    //data属性 树节点信息 json数组
+                    data: tree,
+                    //tree默认展开的节点级别默认为2
+                    levels: 0,
+                    //含有子节点的图标
+                    collapseIcon:'glyphicon glyphicon-star-empty',
+                    //没有子节点的图标
+                    emptyIcon:'glyphicon glyphicon-usd',
+                    //背景颜色
+                    //backColor: 'green'
+                    //是否显示复选框
+                    showCheckbox:false,
+                    //是否允许选中多个节点
+                    //multiSelect:true,
+                    //启用节点的超链接功能默认为false,节点需指定href属性
+                    enableLinks:false,
+                    //事件当节点选中时
+                    onNodeSelected:function(event,node){
+                        //动态向 nav-tabs 导航标签添加tab选项卡
+                        //addTabs方法  add() 添加tab  close()关闭tab  closeAll() 关闭全部tab
+                        if(node.url!=null){
+                            $.addtabs.add({
+                                id:node.id,
+                                title:node.text,
+                                url:node.url,
+                            })
+                        }
+
+                    }
+                })
+            },error:function(){
+
+            }
+        })
+    }
+
+</script>
+</html>
