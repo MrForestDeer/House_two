@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+
+</head>
+<script src="/js/jquery-1.9.1.min.js"></script>
+<!-- 引入jequery -->
+<!--<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>-->
+<link rel="stylesheet" href="/bootstrap/bootstrap3/css/bootstrap.css">
+<script type="text/javascript" src="/bootstrap/bootstrap3/js/bootstrap.js"></script>
+<link rel="stylesheet" href="/bootstrap/bootstrap-table/bootstrap-table.css">
+<script type="text/javascript" src="/bootstrap/bootstrap-table/bootstrap-table.js"></script>
+<script type="text/javascript" src="/bootstrap/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="/bootstrap/bootstrap-bootbox/bootbox.js"></script>
+<link rel="stylesheet" href="/bootstrap/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
+<script type="text/javascript" src="/bootstrap/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="/bootstrap/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<link rel="stylesheet" href="/bootstrap/bootstrap-fileinput/css/fileinput.css">
+<script type="text/javascript" src="/bootstrap/bootstrap-fileinput/js/fileinput.js"></script>
+<script type="text/javascript" src="/bootstrap/bootstrap-fileinput/js/locales/zh.js"></script>
+<script src="/js/area.js"></script>
+<body>
+<div id="toolbar">
+    <form class="form-inline">
+        <div class="form-group">
+            <label for="romame">业主姓名</label>
+            <input type="text" class="form-control" id="romame"  placeholder="请输入业主姓名">
+        </div>
+        <div class="form-group">
+            <label for="romddress">地址</label>
+            <input type="text" class="form-control" id="romddress"  placeholder="请输入地址">
+        </div>
+        <div class="form-group">
+            <label for="romstate">状态</label>
+            <input type="text" class="form-control" id="romstate"  placeholder="状态">
+        </div>
+        <button onclick="searchUser()" type="button" class="btn btn-primary glyphicon glyphicon-search">搜索</button>
+    </form>
+</div>
+<!-- 查询 -->
+<table class="table" id="myTable"></table>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">详细信息</h4>
+            </div>
+            <div id="zhu">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+                <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript"  th:inline="none">
+    $(function () {
+        initShopTable()
+    })
+    //初始化用户表格数据
+    function  initShopTable(){
+        $('#myTable').bootstrapTable({
+            toolbar:'#toolbar',
+            method: "post",
+            url:"/tenant/queryRoom",
+            contentType:"application/x-www-form-urlencoded",
+            pagination:true, //是否展示分页
+            pageList:[2, 4, 10, 50],//分页组件
+            pageNumber:1,
+            pageSize:10,//默认每页条数
+            sidePagination:'server',//分页方式：client客户端分页，server服务端分页
+            striped:true,//显示条纹状表格
+            queryParams:function(){
+                return {
+                    page:this.pageNumber,
+                    rows:this.pageSize,
+                    tename:$("#tename").val(),
+                    teaddress:$("#teaddress").val()
+                }
+            },
+            columns:[[
+                {field:'123',checkbox:true},
+                {field:'romid',title:'编码',width:50,align:'center'},
+                {field:'romame',title:'业主姓名',width:100,align:'center'},
+                {field:'romddress',title:'房源地址',width:100,align:'center'},
+                {field:'stemindatetime',title:'合同开始时间',width:100,align:'center'},
+                {field:'endmaxdatetime',title:'合同截止时间',width:100,align:'center'},
+                {field:'romstate',title:'状态',width:100,align:'center',formatter: function(value,row,index){
+                        return value==1?"正常":value==2?"完善信息":"到期删除该用户";
+                    }},
+
+                {field:'abc',title:'操作',width:100,align:'center',formatter: function(value,row,index){
+                        /* return "<a href='javascript:delshan("+row.teid+")'>查看详情</a>";*/
+                        var str ="";
+                        str = "<a href='javascript:findById(&quot;"+row.romid+"&quot;)' class='easyui-linkbutton' data-options=iconCls:'icon-cancel'>查看详细信息</a>"
+                        return str
+                    }},
+            ]]
+        })
+    }
+    /*========================================================*/
+    function  findById(id){
+        $("#myModalLabel").text("合同详情");
+        $('#myModal').modal();
+        $.ajax({
+            url:"/tenant/queryRoomById",
+            type:"post",
+            data:{id:id},
+            success:function (data) {
+                var html = ""
+                html +="<span><font size='4'>房东信息</font><br></span>" +
+                    " &nbsp;<br>" +
+                    "<span>房东姓名："+data.romame+"</span>" +
+                    "  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;" +
+                    " <span>联系方式："+data.romnumber+"</span> " +
+                    " &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;" +
+                    " <span>身份证号："+data.romidentitynumber+"</span> " +
+                    " &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<br>" +
+                    "<span>紧急联系人："+data.romurgent+"</span>" +
+                    " &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;" +
+                    "<span>联系电话："+data.romphone+"</span>" +
+                    " &nbsp;<br>" +
+                    "&nbsp;<br>" +
+                    "&nbsp;<br>" +
+                    " <hr><br>" +
+                    "<span><font size='4' color='red'" + ">房源信息</font><br></span>" +
+                    "&nbsp;<br>" +
+                    "<span>房源位置："+data.romweizhi+"</span>" +
+                    "&nbsp;<br>" +
+                    "&nbsp;<br>" +
+                    "<span>房源建筑面积："+data.rommianji+"</span>" +
+                    "&nbsp;<br>" +
+                    "&nbsp;<br>" +
+                    "<span>房源户型："+data.romhuxing+"</span>" +
+                    " &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;" +
+                    "<span>房源状况："+data.romflg+"</span>" +
+                    "&nbsp;<br>" +
+                    "&nbsp;<br>" +
+                    "<span>房租支付方式："+data.romPaymentmethod+"</span>" +
+                    "&nbsp;<br>" +
+                    "&nbsp;<br>" +
+                    "&nbsp;<br>" +
+                    "<hr><br>" +
+
+                    "<span><font size='4' color='red'" + ">合同信息</font><br></span>" +
+                    "&nbsp;<br>" +
+                    "&nbsp;<br>" +
+                    "&nbsp;<br>" +
+                    "<span>合同起止日期："+data.stemindatetime+"</span>至<span>"+data.endmaxdatetime+"</span>" +
+                    "&nbsp;<br>" +
+                    "&nbsp;<br>" +
+                    "<span>租金："+data.rommany+"元/月</span>" +
+                    " &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;" +
+                    "<span>押金："+data.romdeposit+"元/月</span>" +
+                    "&nbsp;<br>" +
+                    "&nbsp;<br>" +
+                    "<span>装修控制期："+data.romkong+"</span>" +
+                    "&nbsp;<br>" +
+                    "&nbsp;<br>" +
+                    "<span>免租期："+data.romintkong+"</span>" +
+                    "&nbsp;<br>" +
+                    "&nbsp;<br>" +
+                    "<span>房租支付方式："+data.romPaymentmethod+"</span>" +
+                    "&nbsp;<br>" +
+                    "&nbsp;<br>" +
+                    "&nbsp;<br>" +
+                    "<hr><br>" +
+
+                    "<span><font size='4' color='red'" + ">费用结算</font><br></span>" +
+                    "<span>水表度数："+data.romwater+"</span>" +
+                    "&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;" +
+                    "<span>电表度数："+data.romelectric+"</span>" +
+                    "&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;" +
+                    "<span>气表度数："+data.romgasl+"</span>" +
+                    "&nbsp;<br>" +
+                    "<hr><br>" +
+                    "&nbsp;<br>" +
+                    "&nbsp;<br>" +
+                   /* "<span><font size='4' color='red'" + ">合同备注</font><br></span>" +
+                    "<span>"+data.teninfn+"</span>" +*/
+                    "";
+
+                $("#zhu").html(html);
+
+            },error:function () {
+
+            }
+        })
+    }
+</script>
+</html>
