@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.dao.HouseMapper">
+
+  <select id="findPorweTree" resultType="com.jk.util.MenuTree">
+      select  tree.infoid as id ,tree.infourl as url , tree.infoname as text, tree.ssionsid as pid  from p_midde pm ,p_premissions pp,p_quaninfo tree where  pm.roleid=pp.roid
+      and pp.quanid=tree.infoid and pm.userid=#{userid}
+  </select>
+
+    <select id="findUser" resultType="com.jk.bean.User">
+
+        select * from p_user pu,p_role pr  where pu.positionId=pr.rid  limit #{start},#{pageSize}
+
+    </select>
+<select id="findUserCount" resultType="java.lang.Long">
+       select count(*) from p_user pu,p_role pr  where pu.positionId=pr.rid
+
+</select>
+
+<select id="findRoles" resultType="com.jk.bean.Role">
+
+    select * from p_role limit #{start},#{pageSize}
+
+</select>
+
+    <select id="dindByRoleId" resultType="java.lang.Integer">
+        select quanid from p_premissions where roid=#{rid}
+    </select>
+
+    <insert id="addRolePower">
+        insert into p_premissions values
+          <foreach collection="powerIds" item="li" separator=",">
+
+          (#{rpid},#{rid},#{li})
+
+        </foreach>
+
+
+    </insert>
+</mapper>
