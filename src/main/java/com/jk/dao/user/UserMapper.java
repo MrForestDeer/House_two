@@ -1,6 +1,7 @@
 package com.jk.dao.user;
 
-import com.jk.bean.user.UserBean;
+
+import com.jk.bean.User;
 
 /**
  * <pre>项目名称：
@@ -14,10 +15,10 @@ import com.jk.bean.user.UserBean;
  */
 public interface UserMapper {
 
-    UserBean findaccount(String name);
+    User findaccount(String name);
 
-    UserBean findemail(String userEmail);
+    User findemail(String userEmail);
 
-    UserBean findPhone(String loginNumber);
+    User findPhone(String loginNumber);
 
 }

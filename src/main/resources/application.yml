@@ -21,6 +21,13 @@ spring:
           starttls:
             enable: true
             required: true
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
+    mode: LEGACYHTML5
+    encoding: UTF-8
+    content-type: text/html
+    cache: false
 
 
     #  dubbo:
