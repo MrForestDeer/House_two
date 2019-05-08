@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jk.dao.CollectMapper">
+<mapper namespace="com.jk.dao.collect.CollectMapper">
 <!--tenant SQL 语句开始-->
     <select id="queryTenant" resultType="com.jk.bean.Tenant">
         select * from  p_tenant g where 1=1
