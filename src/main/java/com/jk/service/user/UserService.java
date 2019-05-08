@@ -1,6 +1,6 @@
 package com.jk.service.user;
 
-import com.jk.bean.user.UserBean;
+import com.jk.bean.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,7 +18,7 @@ import java.util.HashMap;
 */
 public interface UserService {
 
-    HashMap<String, Object> login(UserBean ubean, HttpServletRequest request);
+    HashMap<String, Object> login(User ubean, HttpServletRequest request);
 
     HashMap<String, Object> phoneLogin(String loginNumber, String messageCode, HttpSession session);
 

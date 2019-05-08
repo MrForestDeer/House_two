@@ -2,7 +2,8 @@ package com.jk.service.user;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.jk.bean.user.UserBean;
+
+import com.jk.bean.User;
 import com.jk.dao.user.UserMapper;
 import com.jk.util.HttpClientUtil;
 import com.jk.util.Md5Util;
@@ -49,14 +50,14 @@ public class UserServiceImpl implements UserService{
 
     //登录判断
     @Override
-    public HashMap<String, Object> login(UserBean ubean, HttpServletRequest request) {
+    public HashMap<String, Object> login(User ubean, HttpServletRequest request) {
         HashMap<String, Object> result = new HashMap<>();
 
         HttpSession session = request.getSession();
 
 
         //在判断账号，因为要先根据前台传的账号去数据库取到相关信息
-        UserBean userinfo=mapper.findaccount(ubean.getName());
+        User userinfo=mapper.findaccount(ubean.getName());
 
         if(userinfo==null) {
             result.put("code",2);
@@ -89,7 +90,7 @@ public class UserServiceImpl implements UserService{
         HashMap<String, Object> result = new HashMap<>();
 
         //验证手机号是否存在，
-        UserBean findPhone = mapper.findPhone(loginNumber);
+        User findPhone = mapper.findPhone(loginNumber);
         if(findPhone==null) {
             //return "手机号不存在";
             result.put("code",1);
@@ -132,7 +133,7 @@ public class UserServiceImpl implements UserService{
     public HashMap<String, Object> getPhoneID(String phoneID) {
         HashMap<String, Object> result = new HashMap<>();
         //验证手机号是否存在，
-        UserBean findaccount = mapper.findPhone(phoneID);
+        User findaccount = mapper.findPhone(phoneID);
         if(findaccount==null) {
             //return "手机号不存在";
             result.put("code",1);  //状态码 可自定义
@@ -210,7 +211,7 @@ public class UserServiceImpl implements UserService{
         HashMap<String, Object> result = new HashMap<>();
 
         //验证邮箱号是否存在，
-        UserBean findemail = mapper.findemail(userEmail);
+        User findemail = mapper.findemail(userEmail);
         if (findemail == null) {
             result.put("code", 1);
             result.put("msg", "邮箱号不存在");

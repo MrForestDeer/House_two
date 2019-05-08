@@ -1,6 +1,6 @@
 package com.jk.controller.user;
 
-import com.jk.bean.user.UserBean;
+import com.jk.bean.User;
 import com.jk.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -35,7 +35,7 @@ public class UserController {
     //登录判断(账号密码)
     @RequestMapping("login")
     @ResponseBody                                                        //取图片里的数字码 在Session里 所以创建session
-    public HashMap<String,Object> login(UserBean ubean,  HttpServletRequest request){
+    public HashMap<String,Object> login(User ubean, HttpServletRequest request){
 
         return userService.login(ubean,request);
     }
