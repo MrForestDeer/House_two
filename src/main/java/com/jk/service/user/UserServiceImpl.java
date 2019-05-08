@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.jk.bean.user.UserBean;
 import com.jk.dao.user.UserMapper;
-import com.jk.utils.HttpClientUtil;
-import com.jk.utils.Md5Util;
+import com.jk.util.HttpClientUtil;
+import com.jk.util.Md5Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ import java.util.concurrent.TimeUnit;
 */
 @Service
 public class UserServiceImpl implements UserService{
-    @Autowired
+    @Resource
     UserMapper mapper;
     @Autowired
     RedisTemplate redisTemplate;
@@ -135,7 +135,7 @@ public class UserServiceImpl implements UserService{
         if(findaccount==null) {
             //return "手机号不存在";
             result.put("code",1);  //状态码 可自定义
-            result.put("msg","手机号不存在");// 登录状态信息
+            result.put("msg","手机号不在");// 登录状态信息
             return result;
         }
         //在发送短信
