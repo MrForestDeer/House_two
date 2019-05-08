@@ -18,7 +18,6 @@
 <select id="findUserCount" resultType="java.lang.Long">
        select count(*) from p_user pu,p_role pr  where pu.positionId=pr.rid
 
-
 </select>
 
 <select id="findRoles" resultType="com.jk.bean.Role">

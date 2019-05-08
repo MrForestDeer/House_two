@@ -36,7 +36,7 @@ import java.util.concurrent.TimeUnit;
 */
 @Service
 public class UserServiceImpl implements UserService{
-    @Autowired
+    @Resource
     UserMapper mapper;
     @Autowired
     RedisTemplate redisTemplate;
@@ -136,7 +136,7 @@ public class UserServiceImpl implements UserService{
         if(findaccount==null) {
             //return "手机号不存在";
             result.put("code",1);  //状态码 可自定义
-            result.put("msg","手机号不存在");// 登录状态信息
+            result.put("msg","手机号不在");// 登录状态信息
             return result;
         }
         //在发送短信
