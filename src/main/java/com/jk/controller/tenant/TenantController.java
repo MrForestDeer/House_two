@@ -32,8 +32,8 @@ public class TenantController {
     //查询租客详情信息
     @RequestMapping("queryTenantById")
     @ResponseBody
-    public String queryTenantById(Tenant tenant,Integer id){
-        return tenantService.queryTenantById(tenant,id);
+    public HashMap<String,Object> queryTenantById(Integer id){
+        return tenantService.queryTenantById(id);
     }
 
     //查询房东
@@ -45,8 +45,8 @@ public class TenantController {
     //查询房东详情信息
     @RequestMapping("queryRoomById")
     @ResponseBody
-    public String queryRoomById(Room room,Integer id){
-        return tenantService.queryRoomById(room,id);
+    public HashMap<String,Object> queryRoomById(Integer id){
+        return tenantService.queryRoomById(id);
     }
     //完善合同
     //新增房东
