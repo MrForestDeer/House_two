@@ -39,11 +39,11 @@ public class TenantServiceImpl implements TenantService {
     }
 
     @Override
-    public  HashMap<String, Object> queryTenantById(Integer id) {
+    public  Tenant queryTenantById(Integer id) {
         return tenantMapper.queryTenantById(id);
     }
     @Override
-    public HashMap<String, Object> queryRoomById(Integer id) {
+    public Room queryRoomById(Integer id) {
         return tenantMapper.queryRoomById(id);
     }
     @Override

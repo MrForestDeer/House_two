@@ -27,7 +27,7 @@ public interface TenantMapper {
     @Select("select * from p_tenant where teid =#{id}")
     Tenant findTenantbyid(@Param("id") Integer id);
     @Select("select * from p_tenant where teid = #{id}")
-    HashMap<String, Object> queryTenantById(Integer id);
+    Tenant queryTenantById(Integer id);
     @Select("select * from p_room where romid = #{id}")
-    HashMap<String, Object> queryRoomById(Integer id);
+    Room queryRoomById(Integer id);
 }

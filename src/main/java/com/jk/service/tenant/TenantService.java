@@ -11,9 +11,9 @@ public interface TenantService {
     HashMap<String, Object> queryRoom(Room room,Integer page, Integer rows);
 
 
-    HashMap<String, Object>queryTenantById(Integer id);
+    Tenant queryTenantById(Integer id);
 
-    HashMap<String, Object> queryRoomById(Integer id);
+    Room queryRoomById(Integer id);
 
     void updateRoom(Room room);
 

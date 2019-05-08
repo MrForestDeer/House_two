@@ -18,11 +18,6 @@ public class TenantController {
     @Autowired
     private TenantService tenantService;
 
-    @RequestMapping("show")
-    public String show(){
-        return "roomshow";
-    }
-
     //查询租客
     @RequestMapping("queryTenant")
     @ResponseBody
@@ -32,7 +27,7 @@ public class TenantController {
     //查询租客详情信息
     @RequestMapping("queryTenantById")
     @ResponseBody
-    public HashMap<String,Object> queryTenantById(Integer id){
+    public Tenant queryTenantById(Integer id){
         return tenantService.queryTenantById(id);
     }
 
@@ -45,7 +40,7 @@ public class TenantController {
     //查询房东详情信息
     @RequestMapping("queryRoomById")
     @ResponseBody
-    public HashMap<String,Object> queryRoomById(Integer id){
+    public Room queryRoomById(Integer id){
         return tenantService.queryRoomById(id);
     }
     //完善合同
