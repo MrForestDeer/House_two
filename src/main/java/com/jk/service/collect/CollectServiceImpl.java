@@ -4,7 +4,6 @@ import com.jk.bean.Room;
 import com.jk.bean.Shouzhi;
 import com.jk.bean.Tenant;
 import com.jk.dao.collect.CollectMapper;
-import com.jk.service.collect.CollectService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,7 +18,7 @@ import java.util.List;
  * @ Version 1.0
  */
 @Service
-public class CollectServiceImpl  implements CollectService {
+public class CollectServiceImpl  implements  CollectService{
     @Resource
     private CollectMapper collectMapper;
 
@@ -66,5 +65,15 @@ public class CollectServiceImpl  implements CollectService {
     @Override
     public void updateTenant(Integer teid) {
         collectMapper.updateTenant(teid);
+    }
+    //room代收更多
+    @Override
+    public HashMap<String, Object> queryRoomById(Integer romid) {
+        return collectMapper.queryRoomById(romid);
+    }
+    //tencan代收更多
+    @Override
+    public HashMap<String, Object> queryTenantById(Integer teid) {
+        return collectMapper.queryTenantById(teid);
     }
 }

@@ -21,9 +21,8 @@ import java.util.HashMap;
 @Controller
 @RequestMapping("collect")
 public class CollectController {
-       @Autowired
-        private CollectService collectService;
-
+    @Autowired
+    private CollectService collectService;
 
     //查询Room待收账单
     @RequestMapping("queryRoom")
@@ -31,6 +30,15 @@ public class CollectController {
     public HashMap<String ,Object> queryRoom(Integer page, Integer rows , Room room){
         return  collectService.queryRoom(page, rows , room);
     }
+
+    //Room代收更多
+    @RequestMapping("queryRoomById")
+    @ResponseBody
+    public HashMap<String, Object> queryRoomById(Integer romid) {
+        return collectService.queryRoomById(romid);
+    }
+
+
     //Room确认收款
     @RequestMapping("updateRoom")
     public @ResponseBody String updateRoom(Integer romid){
@@ -38,7 +46,7 @@ public class CollectController {
         return null;
     }
 
-   //查询tenant待支账单
+    //查询tenant待支账单
     @RequestMapping("queryTenant")
     @ResponseBody
     public HashMap<String ,Object> queryTenant(Integer page, Integer rows, Tenant tenant){
@@ -52,6 +60,12 @@ public class CollectController {
         return null;
     }
 
+    //Tenant代收更多
+    @RequestMapping("queryTenantById")
+    @ResponseBody
+    public HashMap<String, Object> queryTenantById(Integer teid) {
+        return collectService.queryTenantById(teid);
+    }
 
     //查询收支流水
     @RequestMapping("queryShouzhi")
