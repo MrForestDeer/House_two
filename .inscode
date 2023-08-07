@@ -1,1 +1,1 @@
-run = "javac com.jk.HouseTwoApplication.java && java HouseTwoApplication"
+run = "javac src/main/java/com/jk/HouseTwoApplication.java && java HouseTwoApplication"
