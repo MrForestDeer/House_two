@@ -1,7 +1,5 @@
 package com.jk.controller.manage;
 
-import com.jk.bean.Role;
-import com.jk.bean.User;
 import com.jk.service.manage.MangerServicce;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
