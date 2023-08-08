@@ -22,7 +22,7 @@ public interface HouseMapper {
 
     List<Integer> dindByRoleId(@Param("rid") String rid);
 
-    @Select(" select *from   p_quaninfo")
+    @Select(" select * from   p_quaninfo")
     List<LinkedHashMap<String, Object>> findMenu();
     @Delete("delete form p_premissions where roid=#{roid}")
     void deleteRolePower(@Param("rid") Integer rid);
