@@ -1,1 +1,5 @@
 run = "javac src/main/java/com/jk/HouseTwoApplication.java && java HouseTwoApplication"
+language = "java"
+
+[debugger]
+program = "Main"
